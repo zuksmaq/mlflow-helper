@@ -1,0 +1,35 @@
+[project]
+name = "mlflow-helper"
+version = "0.1.0"
+description = "A clean, composable MLflow abstraction that automatically handles sklearn, Spark, and PyFunc models"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mlflow>=2.0.0",
+    "scikit-learn>=1.3.0",
+    "matplotlib>=3.7.0",
+    "numpy>=1.24.0",
+    "pyspark>=4.0.1",
+]
+
+[project.optional-dependencies]
+spark = ["pyspark>=4.0.0"]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+    "bandit>=1.7.0",
+]
+
+
+[build-system]
+requires = ["uv_build>=0.8.22,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+]
