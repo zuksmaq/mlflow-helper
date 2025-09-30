@@ -31,5 +31,5 @@ class PyFuncSaver(ModelSaver):
         mlflow.pyfunc.log_model(
             python_model=GenericWrapper(model), artifact_path=path, artifacts=artifacts
         )
-        logging.info(f"Saved PyFunc model to {path}")
+        logging.info("Saved PyFunc model to %s", path)
         return path

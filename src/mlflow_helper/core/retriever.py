@@ -24,8 +24,8 @@ class MetricsRetriever:
             metrics = dict(run.data.metrics)
             params = dict(run.data.params)
             return metrics, params
-        except Exception as e:
-            logging.error(f"Failed to retrieve run data for {run_id}: {e}")
+        except (mlflow.exceptions.MlflowException, KeyError) as e:
+            logging.error("Failed to retrieve run data for %s: %s", run_id, e)
             return {}, {}
 
     def get_latest_model_run(self, model_name: str) -> Optional[str]:
@@ -35,8 +35,8 @@ class MetricsRetriever:
             if versions:
                 return versions[0].run_id
             return None
-        except Exception as e:
-            logging.error(f"Failed to get latest model run for {model_name}: {e}")
+        except mlflow.exceptions.MlflowException as e:
+            logging.error("Failed to get latest model run for %s: %s", model_name, e)
             return None
 
     def compare_runs(self, run_ids: List[str]) -> Dict[str, Dict]:

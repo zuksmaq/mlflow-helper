@@ -54,15 +54,15 @@ class ModelPersister:
                 model_uri = f"models:/{model_uri}/latest"
 
             model = mlflow.pyfunc.load_model(model_uri)
-            logging.info(f"Loaded model from {model_uri}")
+            logging.info("Loaded model from %s", model_uri)
             return model
         except Exception as e:
-            logging.error(f"Failed to load model from {model_uri}: {e}")
+            logging.error("Failed to load model from %s: %s", model_uri, e)
             raise
 
     def register_model(self, run_id: str, artifact_path: str, name: str) -> str:
         """Register a model in the MLflow Model Registry."""
         model_uri = f"runs:/{run_id}/{artifact_path}"
         mv = mlflow.register_model(model_uri, name)
-        logging.info(f"Registered model {name} version {mv.version}")
+        logging.info("Registered model %s version %s", name, mv.version)
         return f"models:/{name}/{mv.version}"

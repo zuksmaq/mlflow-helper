@@ -28,8 +28,8 @@ class XGBoostSaver(ModelSaver):
 
         # Log artifacts separately if provided
         if artifacts:
-            for name, artifact in artifacts.items():
+            for _, artifact in artifacts.items():
                 mlflow.log_artifact(artifact, f"{path}/artifacts")
 
-        logging.info(f"Saved XGBoost model to {path}")
+        logging.info("Saved XGBoost model to %s", path)
         return path

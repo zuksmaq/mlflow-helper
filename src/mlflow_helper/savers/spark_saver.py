@@ -25,8 +25,8 @@ class SparkSaver(ModelSaver):
         mlflow.spark.log_model(spark_model=model, artifact_path=path)
 
         if artifacts:
-            for name, artifact in artifacts.items():
+            for _, artifact in artifacts.items():
                 mlflow.log_artifact(artifact, f"{path}/artifacts")
 
-        logging.info(f"Saved Spark model to {path}")
+        logging.info("Saved Spark model to %s", path)
         return path

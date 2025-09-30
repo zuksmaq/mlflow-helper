@@ -23,8 +23,8 @@ class SklearnSaver(ModelSaver):
 
         # Log artifacts separately if provided
         if artifacts:
-            for name, artifact in artifacts.items():
+            for _, artifact in artifacts.items():
                 mlflow.log_artifact(artifact, f"{path}/artifacts")
 
-        logging.info(f"Saved sklearn model to {path}")
+        logging.info("Saved sklearn model to %s", path)
         return path
