@@ -6,8 +6,7 @@ with a clean interface for experiment tracking and model persistence.
 """
 
 from .config import MLflowConfig
-from .core import (MetricsRetriever, MLflowRepository, MLflowTracker,
-                   ModelPersister)
+from .core import MetricsRetriever, MLflowRepository, MLflowTracker, ModelPersister
 from .interfaces import MLflowRepositoryInterface, ModelProtocol
 from .savers import ModelSaver, PyFuncSaver, SklearnSaver, SparkSaver
 

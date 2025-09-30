@@ -5,6 +5,7 @@ Saver for scikit-learn models.
 import logging
 from typing import Dict, Optional
 
+import mlflow
 import mlflow.sklearn
 
 from .base import ModelSaver
@@ -17,7 +18,6 @@ class SklearnSaver(ModelSaver):
         return self._check_mro(model, "sklearn.base.BaseEstimator")
 
     def save(self, model, path: str, artifacts: Optional[Dict] = None) -> str:
-        import mlflow
 
         mlflow.sklearn.log_model(sk_model=model, artifact_path=path)
 

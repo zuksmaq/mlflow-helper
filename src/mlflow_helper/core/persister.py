@@ -10,7 +10,7 @@ from mlflow.pyfunc import PyFuncModel
 
 from ..config import MLflowConfig
 from ..interfaces import ModelProtocol
-from ..savers import ModelSaver, PyFuncSaver, SklearnSaver, SparkSaver
+from ..savers import ModelSaver, PyFuncSaver, SklearnSaver, SparkSaver, XGBoostSaver
 
 
 class ModelPersister:
@@ -23,6 +23,7 @@ class ModelPersister:
     def _initialize_savers(self) -> List[ModelSaver]:
         """Initialize savers in order of specificity."""
         return [
+            XGBoostSaver(),
             SklearnSaver(),
             SparkSaver(),
             PyFuncSaver(),

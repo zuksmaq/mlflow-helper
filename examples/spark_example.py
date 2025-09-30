@@ -5,13 +5,12 @@ Example workflow with PySpark ML.
 import logging
 import sys
 from pathlib import Path
+from mlflow_helper import MLflowConfig, MLflowRepository
 
 print("Starting script...", flush=True)
 
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-
-from mlflow_helper import MLflowConfig, MLflowRepository
 
 
 def spark_workflow():
@@ -80,7 +79,11 @@ def spark_workflow():
 
         with repo.training_session(
             run_name="spark_pipeline_v1",
-            tags={"version": "v1", "model_type": "logistic_regression", "author": "spark_example"}
+            tags={
+                "version": "v1",
+                "model_type": "logistic_regression",
+                "author": "spark_example",
+            },
         ):
             # Build pipeline
             assembler = VectorAssembler(
